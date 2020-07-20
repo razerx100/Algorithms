@@ -10,9 +10,6 @@ class binarySearch{
     void iterative(int *item);
     void recursive(int *item);
 };
-int test(int &x, int &y, int &z){
-    return (x++) or (y--) or (z++);
-}
 int main(){
     cout << "Array size : ";
     int size;
