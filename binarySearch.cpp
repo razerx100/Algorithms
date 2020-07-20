@@ -3,13 +3,16 @@ using namespace std;
 class binarySearch{
     int **data;
     int *size;
-    int recurs(int low, int high, int item);
+    bool recurs(int low, int high, int *item, int &location);
     void print(int *location, int *check, int *item);
     public:
     binarySearch(int **data, int *size) : data(data) , size(size) { }
     void iterative(int *item);
     void recursive(int *item);
 };
+int test(int &x, int &y, int &z){
+    return (x++) or (y--) or (z++);
+}
 int main(){
     cout << "Array size : ";
     int size;
@@ -24,7 +27,8 @@ int main(){
     int item;
     cin >> item;
     bs.iterative(&item);
-    // bs.recursive(&item);
+    cout << endl;
+    bs.recursive(&item);
     return 0;
 }
 void binarySearch::iterative(int *item){
@@ -36,6 +40,20 @@ void binarySearch::iterative(int *item){
         low = ((mid + 1 - low) * ((*data)[mid] < *item)) + low + ((high + 1 - low) * ((*data)[mid] == *item));
         high = ((mid - 1 - high) * ((*data)[mid] > *item)) + high;
     }
+    int check = (-1 * (location + 1 == 0)) + 2;
+    print(&location, &check, item);
+}
+bool binarySearch::recurs(int low, int high, int *item, int &location){
+    int mid = (low + high) / 2;
+    ((low > high)) or (((*data)[mid] == *item)) or
+    (recurs(low + ((mid + 1 - low) * ((*data)[mid] < *item)), high + ((mid - 1 - high) * ((*data)[mid] > *item)), item, location));
+    location = -1 + ((mid + 1) * ((*data)[mid] == *item));
+    return true;
+}
+void binarySearch::recursive(int *item){
+    int low = 0, high = *size - 1, mid;
+    int location;
+    recurs(low, high, item, location);
     int check = (-1 * (location + 1 == 0)) + 2;
     print(&location, &check, item);
 }
