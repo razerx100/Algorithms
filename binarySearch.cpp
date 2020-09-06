@@ -1,5 +1,8 @@
 #include<iostream>
 using namespace std;
+
+// Branchless Binary Search
+
 class binarySearch{
     int **data;
     int *size;
