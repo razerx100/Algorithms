@@ -1,18 +1,25 @@
 #include<iostream>
 using namespace std;
 int binary_search(int* data, int start, int end, int item){
-    int mid = (start + end) / 2;
-    if(start > end){
-        return - 1;
+    if(start == end){
+        if(item == data[start]){
+            return start;
+        }
+        else{
+            return -1;
+        }
     }
-    else if(data[mid] == item){
-        return mid;
-    }
-    else if(data[mid] > item){
-        return binary_search(data, start, mid - 1, item);
-    }
-    else{
-        return binary_search(data, mid + 1, end, item);
+    else {
+        int mid = (start + end) / 2;
+        if(data[mid] == item){
+            return mid;
+        }
+        else if(data[mid] > item){
+            return binary_search(data, start, mid - 1, item);
+        }
+        else{
+            return binary_search(data, mid + 1, end, item);
+        }
     }
 }
 int main(){
